@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Base44 — Vibe Coding Platform for Building Apps and Websites</title>
+  <meta name="description" content="Base44 is a no-code AI development platform that turns builders' ideas into fully functional apps, websites, and AI agents — no coding required." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#ff5520',
+              'orange-light': '#ff7247',
+              blue: '#2563eb',
+              'blue-light': '#3b82f6',
+              dark: '#0a0a0d',
+              card: '#121217',
+              border: 'rgba(255, 255, 255, 0.08)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="bg-[#0a0a0d] text-zinc-100 selection:bg-orange-500/30 selection:text-white relative">
+
+  <!-- Ambient Glow Elements in Background -->
+  <div class="ambient-glow-1 top-[-100px] left-1/2 -translate-x-1/2"></div>
+  <div class="ambient-glow-2 top-[1200px] right-[-150px]"></div>
+  <div class="ambient-glow-1 top-[2800px] left-[-200px]"></div>
+
+  <!-- ============================================================== -->
+  <!-- NAVIGATION BAR                                                 -->
+  <!-- ============================================================== -->
+  <header class="sticky top-0 z-50 glass-nav transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-8">
+        <a href="#" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center font-mono font-bold text-white shadow-lg shadow-orange-500/20 group-hover:scale-105 transition-transform">
+            [44]
+          </div>
+          <span class="font-bold text-xl tracking-tight text-white group-hover:text-orange-400 transition-colors">
+            Base44
+          </span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-zinc-400">
+          <div class="relative group py-2">
+            <button class="hover:text-white flex items-center gap-1 transition-colors">
+              Product <i data-lucide="chevron-down" class="w-3.5 h-3.5 group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <div class="absolute top-full left-0 hidden group-hover:block w-72 p-3 rounded-2xl glass-panel shadow-2xl mt-1 border border-white/10">
+              <a href="#superagents" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-colors">
+                <i data-lucide="bot" class="w-5 h-5 text-orange-500 mt-0.5"></i>
+                <div>
+                  <div class="text-white font-medium text-xs">Superagents</div>
+                  <div class="text-[11px] text-zinc-400">24/7 autonomous agents that connect to your stack</div>
+                </div>
+              </a>
+              <a href="#features" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-colors">
+                <i data-lucide="server" class="w-5 h-5 text-blue-500 mt-0.5"></i>
+                <div>
+                  <div class="text-white font-medium text-xs">Base44 for Developers</div>
+                  <div class="text-[11px] text-zinc-400">Managed agentic backend with auth & database</div>
+                </div>
+              </a>
+              <a href="#templates" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-colors">
+                <i data-lucide="layout-grid" class="w-5 h-5 text-emerald-500 mt-0.5"></i>
+                <div>
+                  <div class="text-white font-medium text-xs">Templates Marketplace</div>
+                  <div class="text-[11px] text-zinc-400">100+ production apps ready to customize</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <a href="#showcase" class="hover:text-white transition-colors">Use Cases</a>
+          <a href="#templates" class="hover:text-white transition-colors">Templates</a>
+          <a href="#enterprise" class="hover:text-white transition-colors">Enterprise</a>
+          <a href="#free-access" class="text-orange-400 hover:text-orange-300 font-semibold transition-colors flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 100% Free
+          </a>
+          <a href="#security" class="hover:text-white transition-colors">Security</a>
+        </nav>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <!-- Language Icon -->
+        <button class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" title="Select Language">
+          <i data-lucide="globe" class="w-4 h-4"></i>
+          <span>EN</span>
+        </button>
+
+        <a href="#free-access" class="hidden sm:inline-flex text-xs font-semibold text-emerald-400 hover:text-emerald-300 px-3 py-2 transition-colors">
+          Free Forever
+        </a>
+
+        <button onclick="document.getElementById('heroPromptInput').focus()" class="relative inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-white text-black hover:bg-zinc-200 transition-all shadow-lg hover:shadow-white/10 active:scale-95">
+          <span>Start building</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" class="lg:hidden p-2 text-zinc-400 hover:text-white">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileMenuDrawer" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden flex flex-col p-6">
+    <div class="flex items-center justify-between pb-6 border-b border-zinc-800">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center font-mono font-bold text-white text-xs">
+          [44]
+        </div>
+        <span class="font-bold text-lg text-white">Base44</span>
+      </div>
+      <button id="mobileMenuCloseBtn" class="p-2 text-zinc-400 hover:text-white">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+    </div>
+    <div class="flex flex-col gap-4 py-8 text-lg font-medium text-zinc-300">
+      <a href="#hero" class="hover:text-white" onclick="document.getElementById('mobileMenuDrawer').classList.add('hidden')">Home</a>
+      <a href="#showcase" class="hover:text-white" onclick="document.getElementById('mobileMenuDrawer').classList.add('hidden')">Showcase</a>
+      <a href="#superagents" class="hover:text-white" onclick="document.getElementById('mobileMenuDrawer').classList.add('hidden')">Superagents</a>
+      <a href="#templates" class="hover:text-white" onclick="document.getElementById('mobileMenuDrawer').classList.add('hidden')">Templates</a>
+      <a href="#enterprise" class="hover:text-white" onclick="document.getElementById('mobileMenuDrawer').classList.add('hidden')">Enterprise</a>
+      <a href="#free-access" class="text-orange-400 font-bold hover:text-white" onclick="document.getElementById('mobileMenuDrawer').classList.add('hidden')">100% Free</a>
+      <a href="#faq" class="hover:text-white" onclick="document.getElementById('mobileMenuDrawer').classList.add('hidden')">FAQ</a>
+    </div>
+    <div class="mt-auto pt-6 border-t border-zinc-800 flex flex-col gap-3">
+      <button onclick="document.getElementById('mobileMenuDrawer').classList.add('hidden'); document.getElementById('heroPromptInput').focus()" class="w-full py-3 rounded-xl bg-orange-600 font-semibold text-white text-center">
+        Start Building Free
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- HERO SECTION                                                   -->
+  <!-- ============================================================== -->
+  <section id="hero" class="relative pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden bg-grid-pattern">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+
+      <!-- Badge / Eyebrow -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill text-xs font-medium text-zinc-300 mb-8 hover:border-orange-500/40 transition-colors">
+        <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+        <span>The Vibe Coding Platform for Apps & Websites</span>
+        <span class="text-zinc-600">|</span>
+        <span class="text-orange-400 font-mono">v2.4 Live</span>
+      </div>
+
+      <!-- Hero Heading -->
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.1] mb-6">
+        Every builder <br class="hidden sm:inline" />
+        <span class="text-gradient-orange">needs a base.</span>
+      </h1>
+
+      <!-- Hero Subtitle -->
+      <p class="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-10">
+        Build your own apps, websites, products and AI agents on Base44 using your own words. 
+        Database, authentication, hosting, and integrations come wired in.
+      </p>
+
+      <!-- ========================================================== -->
+      <!-- INTERACTIVE PROMPT ENGINE BOX                              -->
+      <!-- ========================================================== -->
+      <div class="max-w-3xl mx-auto rounded-3xl p-2 sm:p-3 glass-panel border border-white/10 glow-orange text-left relative transition-all">
+        
+        <!-- Mode & Category Header Toolbar -->
+        <div class="flex flex-wrap items-center justify-between gap-2 px-3 py-2 border-b border-white/5 mb-2">
+          
+          <!-- Build vs Plan Mode Switcher -->
+          <div class="flex items-center gap-1 bg-black/40 p-1 rounded-xl border border-white/5 text-xs font-semibold">
+            <button data-mode="build" class="mode-btn px-3 py-1 rounded-lg bg-white/15 text-white transition-all flex items-center gap-1.5">
+              <i data-lucide="zap" class="w-3.5 h-3.5 text-orange-400"></i>
+              Build
+            </button>
+            <button data-mode="plan" class="mode-btn px-3 py-1 rounded-lg text-zinc-400 hover:text-white transition-all flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              Plan
+            </button>
+          </div>
+
+          <!-- Category Selector Tabs -->
+          <div class="flex items-center gap-1 text-xs">
+            <button data-category="apps" class="category-pill tab-active px-3 py-1 rounded-lg text-white font-medium hover:bg-white/5 transition-all">Apps</button>
+            <button data-category="websites" class="category-pill px-3 py-1 rounded-lg text-zinc-400 font-medium hover:bg-white/5 transition-all">Websites</button>
+            <button data-category="games" class="category-pill px-3 py-1 rounded-lg text-zinc-400 font-medium hover:bg-white/5 transition-all">Games</button>
+            <button data-category="tools" class="category-pill px-3 py-1 rounded-lg text-zinc-400 font-medium hover:bg-white/5 transition-all">Tools</button>
+          </div>
+        </div>
+
+        <!-- Textarea input -->
+        <div class="px-3 pt-2 pb-1 relative">
+          <textarea id="heroPromptInput" rows="3" class="w-full bg-transparent text-white placeholder-zinc-500 text-sm sm:text-base focus:outline-none resize-none font-normal leading-relaxed" placeholder="Describe the app you want to build in your own words..."></textarea>
+        </div>
+
+        <!-- Bottom Action Bar inside Prompt Box -->
+        <div class="flex items-center justify-between px-3 pt-2 pb-1 border-t border-white/5">
+          <div class="flex items-center gap-2">
+            <!-- Model Picker Pill -->
+            <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-zinc-300 font-mono cursor-pointer hover:bg-white/10 transition-colors">
+              <i data-lucide="cpu" class="w-3.5 h-3.5 text-orange-400"></i>
+              <span>Claude 3.7 Sonnet</span>
+            </div>
+
+            <!-- Attachment Tooltip -->
+            <button class="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" title="Attach design or spec">
+              <i data-lucide="paperclip" class="w-4 h-4"></i>
+            </button>
+
+            <!-- Voice Input Tooltip -->
+            <button class="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" title="Voice input (Speech to text)">
+              <i data-lucide="mic" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Primary Start Button -->
+          <button id="startBuildHeroBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-semibold text-xs tracking-wide shadow-lg shadow-orange-600/30 transition-all hover:scale-105 active:scale-95">
+            <span>Start building</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Suggestion Chips Under Prompt Box -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mt-4 max-w-2xl mx-auto">
+        <span class="text-xs text-zinc-500 font-medium">Suggestions:</span>
+        <button class="suggestion-chip px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 text-xs transition-colors" data-prompt="A client onboarding portal with contract e-signatures, file uploads, and Slack alerts">
+          Client onboarding portal
+        </button>
+        <button class="suggestion-chip px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 text-xs transition-colors" data-prompt="A fitness running tracker with pace calculation, GPS maps, and weekly mileage goals">
+          Running distance tracker
+        </button>
+        <button class="suggestion-chip px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 text-xs transition-colors" data-prompt="An executive KPI dashboard pulling real-time MRR, churn rate, and customer feedback">
+          Executive KPI dashboard
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- TRUSTED BY & METRICS STRIP                                     -->
+  <!-- ============================================================== -->
+  <section class="py-12 border-y border-white/5 bg-zinc-950/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-orange-400">
+            <i data-lucide="users" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="text-lg font-bold text-white">10M+ Builders</div>
+            <div class="text-xs text-zinc-400">Shipping apps & websites worldwide</div>
+          </div>
+        </div>
+
+        <!-- Social Proof Quotes -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 max-w-4xl">
+          
+          <div class="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800/80">
+            <div class="text-xs font-bold text-orange-400">BenQ Latin America</div>
+            <p class="text-xs text-zinc-300 mt-1 italic">“10 days of reporting collapsed into 20 minutes. Saved $50k–$100k vs outsourcing.”</p>
+            <div class="text-[10px] text-zinc-500 mt-1.5">— Israel Bedolla, General Manager</div>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800/80">
+            <div class="text-xs font-bold text-emerald-400">Gift My Book</div>
+            <p class="text-xs text-zinc-300 mt-1 italic">“1 week to launch a full-stack product. Scaled to $1M ARR in 3 months.”</p>
+            <div class="text-[10px] text-zinc-500 mt-1.5">— Yoav Hornung, Founder (ex-Fiverr)</div>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800/80 sm:col-span-2 lg:col-span-1">
+            <div class="text-xs font-bold text-blue-400">Enterprise Verified</div>
+            <div class="flex items-center gap-3 mt-2">
+              <span class="px-2 py-0.5 rounded bg-zinc-800 text-[10px] text-zinc-300 font-mono border border-zinc-700">SOC 2 Type II</span>
+              <span class="px-2 py-0.5 rounded bg-zinc-800 text-[10px] text-zinc-300 font-mono border border-zinc-700">ISO 27001</span>
+              <span class="px-2 py-0.5 rounded bg-zinc-800 text-[10px] text-zinc-300 font-mono border border-zinc-700">GDPR</span>
+            </div>
+            <div class="text-[10px] text-zinc-500 mt-1.5">Wix enterprise infrastructure</div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- LIVE INTERACTIVE SHOWCASE SECTION (Functional Apps on Base44)   -->
+  <!-- ============================================================== -->
+  <section id="showcase" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-orange-400 font-mono">Real Production Apps</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-3 tracking-tight">
+          What will you build?
+        </h2>
+        <p class="text-zinc-400 mt-4 text-base sm:text-lg">
+          Whatever you're imagining, you can use vibe coding to build it on Base44. 
+          Here are live interactive modules created with a single prompt.
+        </p>
+      </div>
+
+      <!-- Interactive Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1: Distance & Duration (Interactive Running Dashboard) -->
+        <div class="rounded-2xl bg-zinc-900/90 border border-zinc-800 p-6 flex flex-col justify-between hover-card-lift">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-orange-500/20 text-orange-400 flex items-center justify-center">
+                  <i data-lucide="activity" class="w-4 h-4"></i>
+                </div>
+                <span class="font-bold text-sm text-white">Distance & Duration</span>
+              </div>
+              <!-- 7D / 30D / 90D Filter Buttons -->
+              <div class="flex gap-1 text-[11px] bg-zinc-800 p-1 rounded-lg">
+                <button data-period="7D" class="runner-time-btn px-2 py-0.5 rounded bg-zinc-700 text-white font-medium transition-colors">7D</button>
+                <button data-period="30D" class="runner-time-btn px-2 py-0.5 rounded text-zinc-400 hover:text-white transition-colors">30D</button>
+                <button data-period="90D" class="runner-time-btn px-2 py-0.5 rounded text-zinc-400 hover:text-white transition-colors">90D</button>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-2 my-4 p-3 rounded-xl bg-zinc-950 border border-zinc-800/80">
+              <div>
+                <span class="text-[10px] text-zinc-500 uppercase font-mono">Distance</span>
+                <div id="runnerMiles" class="text-base font-bold text-white mt-0.5">28.4 mi</div>
+              </div>
+              <div>
+                <span class="text-[10px] text-zinc-500 uppercase font-mono">Avg Pace</span>
+                <div id="runnerPace" class="text-base font-bold text-emerald-400 mt-0.5">7'42"/mi</div>
+              </div>
+              <div>
+                <span class="text-[10px] text-zinc-500 uppercase font-mono">Burn</span>
+                <div id="runnerCalories" class="text-base font-bold text-orange-400 mt-0.5">3,120 kcal</div>
+              </div>
+            </div>
+
+            <!-- Interactive Sparkline SVG -->
+            <div class="h-24 w-full bg-zinc-950/60 rounded-xl p-2 border border-zinc-800/50 flex items-end">
+              <svg class="w-full h-full" viewBox="0 0 260 90">
+                <polyline id="runnerSparkline" fill="none" stroke="#ff5520" stroke-width="3" stroke-linecap="round" points="10,70 40,55 70,62 100,35 130,48 160,25 190,15 220,30 250,18" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-zinc-800 flex items-center justify-between text-xs text-zinc-400">
+            <span>Built in 4 mins from prompt</span>
+            <button onclick="openAiSimulator('Fitness tracking app with live pace charts and GPS sync', 'apps', 'build')" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-1">
+              Clone App <i data-lucide="arrow-right" class="w-3 h-3"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: Footprint Lab (Interactive Carbon Emissions Calculator) -->
+        <div class="rounded-2xl bg-zinc-900/90 border border-zinc-800 p-6 flex flex-col justify-between hover-card-lift">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                  <i data-lucide="leaf" class="w-4 h-4"></i>
+                </div>
+                <span class="font-bold text-sm text-white">Footprint Lab</span>
+              </div>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Live Tool</span>
+            </div>
+
+            <!-- Carbon sliders -->
+            <div class="space-y-4 my-2">
+              <div>
+                <div class="flex justify-between text-xs text-zinc-400 mb-1">
+                  <span>Flight Hours / Month</span>
+                  <span class="font-mono text-white">Adjust slider</span>
+                </div>
+                <input id="travelSlider" type="range" min="0" max="40" value="12" class="w-full accent-emerald-500 bg-zinc-800 h-1.5 rounded-lg cursor-pointer">
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs text-zinc-400 mb-1">
+                  <span>Home Energy (kWh)</span>
+                  <span class="font-mono text-white">Adjust slider</span>
+                </div>
+                <input id="energySlider" type="range" min="5" max="50" value="20" class="w-full accent-emerald-500 bg-zinc-800 h-1.5 rounded-lg cursor-pointer">
+              </div>
+            </div>
+
+            <!-- Dynamic Result -->
+            <div class="mt-4 p-3 rounded-xl bg-zinc-950 border border-zinc-800/80 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-zinc-500 uppercase font-mono">Estimated Annual Footprint</span>
+                <div id="totalCarbonDisplay" class="text-xl font-extrabold text-white mt-0.5">9.2 tCO₂e</div>
+              </div>
+              <div class="w-24 h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <div id="carbonOffsetBar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 65%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-zinc-800 flex items-center justify-between text-xs text-zinc-400">
+            <span>Formula & UI auto-wired</span>
+            <button onclick="openAiSimulator('ESG carbon emissions calculator with sliders and reports', 'tools', 'build')" class="text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1">
+              Clone App <i data-lucide="arrow-right" class="w-3 h-3"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3: Total Repetitions (Interactive Workout Tracker) -->
+        <div class="rounded-2xl bg-zinc-900/90 border border-zinc-800 p-6 flex flex-col justify-between hover-card-lift">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                  <i data-lucide="dumbbell" class="w-4 h-4"></i>
+                </div>
+                <span class="font-bold text-sm text-white">Total Repetitions</span>
+              </div>
+              <span class="text-xs text-zinc-400 font-mono">Day 18 Streak 🔥</span>
+            </div>
+
+            <div class="text-center py-4 bg-zinc-950 rounded-xl border border-zinc-800/80 my-2">
+              <div class="text-xs text-zinc-500 uppercase font-mono tracking-wider">Completed Today</div>
+              <div id="repCountDisplay" class="text-4xl font-extrabold text-white mt-1 transition-colors">142</div>
+              <div class="flex items-center justify-center gap-2 mt-3">
+                <button id="minusRepBtn" class="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-zinc-300">-5</button>
+                <button id="addRepBtn" class="px-4 py-1 rounded-lg bg-orange-600 hover:bg-orange-500 text-xs font-bold text-white shadow-md shadow-orange-600/30">+5 Reps</button>
+              </div>
+            </div>
+
+            <!-- Streak Grid -->
+            <div class="grid grid-cols-7 gap-1 mt-3">
+              <div class="h-6 rounded bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-[10px] text-orange-300 font-mono">M</div>
+              <div class="h-6 rounded bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-[10px] text-orange-300 font-mono">T</div>
+              <div class="h-6 rounded bg-orange-500/40 border border-orange-500/50 flex items-center justify-center text-[10px] text-orange-200 font-mono">W</div>
+              <div class="h-6 rounded bg-orange-500/30 border border-orange-500/40 flex items-center justify-center text-[10px] text-orange-200 font-mono">T</div>
+              <div class="h-6 rounded bg-orange-500/60 border border-orange-500/60 flex items-center justify-center text-[10px] text-white font-mono">F</div>
+              <div class="h-6 rounded bg-orange-500/80 border border-orange-500/80 flex items-center justify-center text-[10px] text-white font-mono">S</div>
+              <div class="h-6 rounded bg-orange-600 border border-orange-400 flex items-center justify-center text-[10px] text-white font-mono font-bold">S</div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-zinc-800 flex items-center justify-between text-xs text-zinc-400">
+            <span>Local DB sync ready</span>
+            <button onclick="openAiSimulator('Gamified habit workout tracker with streaks and sound effects', 'apps', 'build')" class="text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-1">
+              Clone App <i data-lucide="arrow-right" class="w-3 h-3"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- THE WHOLE STACK (Value Prop & Architecture)                    -->
+  <!-- ============================================================== -->
+  <section id="features" class="py-24 border-t border-white/5 bg-zinc-950/70 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <span class="text-xs font-bold uppercase tracking-wider text-orange-400 font-mono">Batteries Included</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-3 tracking-tight">
+          The whole stack. <br />
+          <span class="text-zinc-500">No setup slowdown.</span>
+        </h2>
+        <p class="text-zinc-400 mt-4 text-base sm:text-lg">
+          Ship something real with vibe coding — without touching a server, wiring up a payment provider, or configuring a database. It's all already there.
+        </p>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="p-8 rounded-2xl glass-panel hover-card-lift">
+          <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center mb-6">
+            <i data-lucide="database" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Backend & Database, Built In</h3>
+          <p class="text-sm text-zinc-400 mt-2 leading-relaxed">
+            Base44 automatically creates your PostgreSQL data models, relational entities, validation checks, and migrations. Zero manual DBA work.
+          </p>
+          <div class="mt-4 pt-4 border-t border-zinc-800/80 flex items-center gap-2 text-xs font-mono text-zinc-500">
+            <span class="text-emerald-400">●</span> Row-Level Security Enforced
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl glass-panel hover-card-lift">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6">
+            <i data-lucide="plug-zap" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">One-Click Connectors</h3>
+          <p class="text-sm text-zinc-400 mt-2 leading-relaxed">
+            Plug straight into Salesforce, Slack, Notion, Google Workspace, GitHub, HubSpot, and 50+ tools without managing OAuth tokens or API keys.
+          </p>
+          <div class="mt-4 pt-4 border-t border-zinc-800/80 flex items-center gap-2 text-xs font-mono text-zinc-500">
+            <span class="text-emerald-400">●</span> 50+ Pre-Configured Connectors
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl glass-panel hover-card-lift">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-6">
+            <i data-lucide="lock" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Auth & User Management</h3>
+          <p class="text-sm text-zinc-400 mt-2 leading-relaxed">
+            Instant email/password sign-up, Google OAuth, Enterprise SAML/SSO, user session state, and password resets ready in one sentence.
+          </p>
+          <div class="mt-4 pt-4 border-t border-zinc-800/80 flex items-center gap-2 text-xs font-mono text-zinc-500">
+            <span class="text-emerald-400">●</span> Enterprise SSO & 2FA Ready
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl glass-panel hover-card-lift">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6">
+            <i data-lucide="credit-card" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Stripe Monetization & Payments</h3>
+          <p class="text-sm text-zinc-400 mt-2 leading-relaxed">
+            Charge for access, sell physical or digital goods, collect recurring subscriptions, and handle billing portals in minutes.
+          </p>
+          <div class="mt-4 pt-4 border-t border-zinc-800/80 flex items-center gap-2 text-xs font-mono text-zinc-500">
+            <span class="text-emerald-400">●</span> Webhook Endpoints Auto-Configured
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl glass-panel hover-card-lift">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-6">
+            <i data-lucide="globe-2" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Custom Domains & Auto-SSL</h3>
+          <p class="text-sm text-zinc-400 mt-2 leading-relaxed">
+            Attach your own custom domain or claim a free domain for 1 year. Edge CDN hosting and automatic HTTPS certificates are always included.
+          </p>
+          <div class="mt-4 pt-4 border-t border-zinc-800/80 flex items-center gap-2 text-xs font-mono text-zinc-500">
+            <span class="text-emerald-400">●</span> Global Edge CDN Caching
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl glass-panel hover-card-lift">
+          <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
+            <i data-lucide="git-branch" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">2-Way GitHub Code Sync</h3>
+          <p class="text-sm text-zinc-400 mt-2 leading-relaxed">
+            You own 100% of your code. Export anytime to your private GitHub repo, make local edits in VS Code or Cursor, and sync back seamlessly.
+          </p>
+          <div class="mt-4 pt-4 border-t border-zinc-800/80 flex items-center gap-2 text-xs font-mono text-zinc-500">
+            <span class="text-emerald-400">●</span> No Vendor Lock-In
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- SUPERAGENTS SECTION (Autonomous 24/7 AI Agents)                -->
+  <!-- ============================================================== -->
+  <section id="superagents" class="py-24 border-t border-white/5 relative bg-[#0d0d12]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-mono mb-4">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>Introducing Base44 Superagents</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          The AI agent that does it all, <br />
+          <span class="text-gradient-orange">ready in under a minute.</span>
+        </h2>
+        <p class="text-zinc-400 mt-4 text-base sm:text-lg">
+          Your superagent can do the work of a personal assistant, support rep, marketing team, or analyst. 
+          Tell it what to do, it handles the rest.
+        </p>
+      </div>
+
+      <!-- Superagent Interactive Workspace Simulator -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Left Tabs Column -->
+        <div class="lg:col-span-4 space-y-2">
+          <div class="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3 px-2">Choose a Job for Superagent</div>
+          
+          <button data-scenario="inbox" class="superagent-tab w-full text-left p-4 rounded-xl bg-zinc-800 text-white border border-orange-500/50 transition-all flex items-center justify-between">
+            <div>
+              <div class="font-bold text-sm">Your inbox, handled</div>
+              <div class="text-xs text-zinc-400 mt-0.5">Overnight triage, replies & WhatsApp summary</div>
+            </div>
+            <i data-lucide="mail" class="w-5 h-5 text-orange-400"></i>
+          </button>
+
+          <button data-scenario="leads" class="superagent-tab w-full text-left p-4 rounded-xl text-zinc-400 border border-transparent hover:bg-zinc-900 transition-all flex items-center justify-between">
+            <div>
+              <div class="font-bold text-sm">Leads that never go cold</div>
+              <div class="text-xs text-zinc-500 mt-0.5">10-minute follow-ups & automated nurturing</div>
+            </div>
+            <i data-lucide="user-plus" class="w-5 h-5 text-zinc-500"></i>
+          </button>
+
+          <button data-scenario="business" class="superagent-tab w-full text-left p-4 rounded-xl text-zinc-400 border border-transparent hover:bg-zinc-900 transition-all flex items-center justify-between">
+            <div>
+              <div class="font-bold text-sm">Your business, on autopilot</div>
+              <div class="text-xs text-zinc-500 mt-0.5">Weekly metrics pull, trends & Slack reports</div>
+            </div>
+            <i data-lucide="trending-up" class="w-5 h-5 text-zinc-500"></i>
+          </button>
+
+          <button data-scenario="travel" class="superagent-tab w-full text-left p-4 rounded-xl text-zinc-400 border border-transparent hover:bg-zinc-900 transition-all flex items-center justify-between">
+            <div>
+              <div class="font-bold text-sm">Travel, end to end</div>
+              <div class="text-xs text-zinc-500 mt-0.5">Price drop monitoring & event scheduling</div>
+            </div>
+            <i data-lucide="plane" class="w-5 h-5 text-zinc-500"></i>
+          </button>
+
+          <button data-scenario="calendar" class="superagent-tab w-full text-left p-4 rounded-xl text-zinc-400 border border-transparent hover:bg-zinc-900 transition-all flex items-center justify-between">
+            <div>
+              <div class="font-bold text-sm">Your calendar, optimized</div>
+              <div class="text-xs text-zinc-500 mt-0.5">Conflict resolution & focus time protector</div>
+            </div>
+            <i data-lucide="calendar" class="w-5 h-5 text-zinc-500"></i>
+          </button>
+        </div>
+
+        <!-- Right Live Simulator Card -->
+        <div class="lg:col-span-8 p-6 sm:p-8 rounded-2xl glass-panel border border-white/10 glow-orange">
+          
+          <div class="flex items-center justify-between pb-6 border-b border-zinc-800">
+            <div>
+              <h3 id="agentScenarioTitle" class="text-xl font-bold text-white">Your inbox, handled</h3>
+              <p class="text-xs text-zinc-400 mt-1">Status: Running autonomously on Base44 cloud worker</p>
+            </div>
+            <span id="agentScenarioBadge" class="px-3 py-1 text-xs font-mono rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">
+              24/7 Background Cron
+            </span>
+          </div>
+
+          <!-- Prompt instruction -->
+          <div class="my-6 p-4 rounded-xl bg-black/50 border border-zinc-800 font-mono text-xs sm:text-sm text-zinc-300">
+            <span class="text-orange-400 font-bold block mb-1">Human Instruction:</span>
+            <p id="agentScenarioCmd" class="italic leading-relaxed">
+              “Scan my inbox overnight. Flag anything urgent, draft replies to the easy ones, and send me a WhatsApp summary at 7am with what you handled and what still needs me”
+            </p>
+          </div>
+
+          <!-- Realtime execution steps -->
+          <div class="space-y-3">
+            <div class="text-xs font-semibold uppercase tracking-wider text-zinc-500">Execution Timeline</div>
+            <div id="agentScenarioSteps" class="space-y-2.5">
+              <!-- Dynamically populated by JS -->
+            </div>
+          </div>
+
+          <!-- Output summary -->
+          <div class="mt-6 p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/30 flex items-start gap-3">
+            <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 mt-0.5 shrink-0"></i>
+            <div>
+              <div class="text-xs font-bold text-emerald-300">Action Result</div>
+              <p id="agentScenarioResult" class="text-xs text-zinc-300 mt-1">
+                WhatsApp Briefing: 3 items require your signature. 7 replies ready for approval in drafts.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- TEMPLATES MARKETPLACE                                          -->
+  <!-- ============================================================== -->
+  <section id="templates" class="py-24 border-t border-white/5 bg-[#0a0a0d] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-orange-400 font-mono">Marketplace</span>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2 tracking-tight">
+            App Templates
+          </h2>
+          <p class="text-zinc-400 mt-2 text-sm sm:text-base">
+            Start from a proven full-stack structure. Fork, customize with AI in chat, and launch today.
+          </p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative w-full md:w-72">
+          <i data-lucide="search" class="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+          <input id="templateSearchInput" type="text" placeholder="Search templates..." class="w-full pl-10 pr-4 py-2.5 text-xs rounded-xl bg-zinc-900 border border-zinc-800 text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500 transition-colors">
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap gap-2 mb-8 text-xs font-medium">
+        <button data-category="all" class="template-filter-btn px-4 py-2 rounded-xl bg-white text-black font-semibold transition-colors">All Categories</button>
+        <button data-category="saas" class="template-filter-btn px-4 py-2 rounded-xl bg-zinc-800/60 text-zinc-400 hover:text-white transition-colors">SaaS & Dashboards</button>
+        <button data-category="ai" class="template-filter-btn px-4 py-2 rounded-xl bg-zinc-800/60 text-zinc-400 hover:text-white transition-colors">AI & Superagents</button>
+        <button data-category="games" class="template-filter-btn px-4 py-2 rounded-xl bg-zinc-800/60 text-zinc-400 hover:text-white transition-colors">Games</button>
+        <button data-category="portals" class="template-filter-btn px-4 py-2 rounded-xl bg-zinc-800/60 text-zinc-400 hover:text-white transition-colors">Internal Portals</button>
+        <button data-category="ecommerce" class="template-filter-btn px-4 py-2 rounded-xl bg-zinc-800/60 text-zinc-400 hover:text-white transition-colors">E-Commerce</button>
+      </div>
+
+      <!-- Dynamic Cards Container -->
+      <div id="templatesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered by JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- STEP-BY-STEP VIBE CODING WALKTHROUGH                          -->
+  <!-- ============================================================== -->
+  <section class="py-24 border-t border-white/5 bg-zinc-950/80 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-orange-400 font-mono">The Vibe Coding Flow</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-3 tracking-tight">
+          How to build an app with AI for free
+        </h2>
+        <p class="text-zinc-400 mt-4 text-base sm:text-lg">
+          No coding, no deployment pipeline, no waiting for developers. Five simple steps from thought to production.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+        
+        <div class="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 flex flex-col justify-between">
+          <div>
+            <div class="text-orange-500 font-mono font-bold text-xs">STEP 01</div>
+            <h4 class="text-base font-bold text-white mt-2">Describe</h4>
+            <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+              Tell Base44 what you have in mind in plain English: a simple thought or detailed requirement.
+            </p>
+          </div>
+          <div class="mt-6 text-[10px] text-zinc-500 font-mono">Natural Language</div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 flex flex-col justify-between">
+          <div>
+            <div class="text-orange-500 font-mono font-bold text-xs">STEP 02</div>
+            <h4 class="text-base font-bold text-white mt-2">Generate</h4>
+            <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+              Base44 transforms your words into a working app with pages, database schema, logic, and auth.
+            </p>
+          </div>
+          <div class="mt-6 text-[10px] text-zinc-500 font-mono">Full-Stack Synthesis</div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 flex flex-col justify-between">
+          <div>
+            <div class="text-orange-500 font-mono font-bold text-xs">STEP 03</div>
+            <h4 class="text-base font-bold text-white mt-2">Shape & Tweak</h4>
+            <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+              Chat with the AI to refine styling, add workflows, or tweak layouts until it works exactly right.
+            </p>
+          </div>
+          <div class="mt-6 text-[10px] text-zinc-500 font-mono">Vibe Coding Iteration</div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 flex flex-col justify-between">
+          <div>
+            <div class="text-orange-500 font-mono font-bold text-xs">STEP 04</div>
+            <h4 class="text-base font-bold text-white mt-2">Connect</h4>
+            <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+              Plug in Slack, Google Calendar, Stripe, or custom APIs with 1-click connectors.
+            </p>
+          </div>
+          <div class="mt-6 text-[10px] text-zinc-500 font-mono">OAuth & API Webhooks</div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 flex flex-col justify-between">
+          <div>
+            <div class="text-orange-500 font-mono font-bold text-xs">STEP 05</div>
+            <h4 class="text-base font-bold text-white mt-2">Publish</h4>
+            <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+              Go live with one click. Free hosting, custom domain, and SSL certificates are automated.
+            </p>
+          </div>
+          <div class="mt-6 text-[10px] text-zinc-500 font-mono">Global Edge CDN</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- ENTERPRISE & SECURITY SECTION                                  -->
+  <!-- ============================================================== -->
+  <section id="enterprise" class="py-24 border-t border-white/5 bg-[#0e0e14] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7">
+          <span class="text-xs font-bold uppercase tracking-wider text-orange-400 font-mono">Enterprise Ready</span>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-3 tracking-tight leading-tight">
+            Unleash the builders <br />
+            <span class="text-gradient-orange">in all your teams.</span>
+          </h2>
+          <p class="text-zinc-400 mt-6 text-base sm:text-lg leading-relaxed">
+            Base44 enterprise solutions give every department the power to build exactly the tools they need on one platform — in days, not quarters — with the governance IT needs to roll it out safely.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+            <div class="p-4 rounded-xl bg-zinc-900/80 border border-zinc-800">
+              <i data-lucide="shield-check" class="w-6 h-6 text-emerald-400 mb-2"></i>
+              <h4 class="text-sm font-bold text-white">IT Governance & Auditing</h4>
+              <p class="text-xs text-zinc-400 mt-1">Granular RBAC, publishing controls, per-user credit limits, and full audit log APIs.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-900/80 border border-zinc-800">
+              <i data-lucide="key" class="w-6 h-6 text-blue-400 mb-2"></i>
+              <h4 class="text-sm font-bold text-white">SSO & SCIM Provisioning</h4>
+              <p class="text-xs text-zinc-400 mt-1">Okta, Microsoft Entra ID, Google Workspace with automated directory synchronization.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-900/80 border border-zinc-800">
+              <i data-lucide="network" class="w-6 h-6 text-purple-400 mb-2"></i>
+              <h4 class="text-sm font-bold text-white">IP Allowlisting & Data Residency</h4>
+              <p class="text-xs text-zinc-400 mt-1">Restrict access to corporate CIDR ranges and choose dedicated regional data storage.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-900/80 border border-zinc-800">
+              <i data-lucide="eye-off" class="w-6 h-6 text-orange-400 mb-2"></i>
+              <h4 class="text-sm font-bold text-white">Training Data Opt-Out</h4>
+              <p class="text-xs text-zinc-400 mt-1">Enterprise workspace data, prompts, and application code are never used to train public AI models.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 flex items-center gap-4">
+            <button class="open-enterprise-modal-btn px-6 py-3 rounded-xl bg-white text-black font-semibold text-xs tracking-wide hover:bg-zinc-200 transition-all shadow-lg shadow-white/10">
+              Schedule Free Hackathon
+            </button>
+            <button class="open-enterprise-modal-btn px-6 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white font-semibold text-xs tracking-wide transition-all border border-zinc-700">
+              Request Free Org Access
+            </button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 p-6 rounded-2xl glass-panel border border-white/10 space-y-6">
+          <div class="flex items-center justify-between pb-4 border-b border-zinc-800">
+            <span class="text-xs font-mono text-zinc-400">Enterprise Security Infrastructure</span>
+            <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 font-mono">100% Compliant</span>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-1"></i>
+              <div class="text-xs">
+                <span class="font-bold text-white">SOC 2 Type II Certified:</span>
+                <span class="text-zinc-400"> Independent third-party audit of security and operations.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-1"></i>
+              <div class="text-xs">
+                <span class="font-bold text-white">ISO 27001 Certified:</span>
+                <span class="text-zinc-400"> Information security management meeting highest global standards.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-1"></i>
+              <div class="text-xs">
+                <span class="font-bold text-white">GDPR & Privacy Guarded:</span>
+                <span class="text-zinc-400"> Complete DPA, right to erasure, and zero telemetry leaks.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-1"></i>
+              <div class="text-xs">
+                <span class="font-bold text-white">End-to-End Encryption:</span>
+                <span class="text-zinc-400"> TLS 1.2+ in transit, AES-256 at rest, secrets secured in Cloud KMS.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enterprise Testimonial -->
+          <div class="pt-6 border-t border-zinc-800 text-xs text-zinc-400 italic">
+            “9 internal applications shipped across Sales, Supply Chain, HR & Operations in 2 months across 3 countries.”
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 100% FREE ACCESS & UNLIMITED CAPABILITIES                       -->
+  <!-- ============================================================== -->
+  <section id="free-access" class="py-24 border-t border-white/5 bg-[#0a0a0d] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 font-mono bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+          Zero Cost · Zero Paywalls · Zero Limits
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4 tracking-tight">
+          100% Free. Forever. <br />
+          <span class="text-gradient-orange">For every builder.</span>
+        </h2>
+        <p class="text-zinc-400 mt-4 text-base sm:text-lg">
+          No subscriptions, no hidden tiers, no credit cards required. Every feature, top-tier AI models, and unlimited production apps are completely free for everyone.
+        </p>
+
+        <!-- Free Guarantee Badges -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mt-8 text-xs font-medium text-zinc-300">
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+            <span>No Credit Card Ever</span>
+          </div>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800">
+            <i data-lucide="infinity" class="w-4 h-4 text-orange-400"></i>
+            <span>Unlimited Applications</span>
+          </div>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800">
+            <i data-lucide="sparkles" class="w-4 h-4 text-blue-400"></i>
+            <span>Claude 3.7 & GPT-4o Included</span>
+          </div>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800">
+            <i data-lucide="git-branch" class="w-4 h-4 text-purple-400"></i>
+            <span>100% Code Ownership</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Free Unlocked Capabilities Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Pillar 1 -->
+        <div class="rounded-2xl bg-zinc-900/90 border border-zinc-800 p-6 flex flex-col justify-between hover-card-lift">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center mb-4">
+              <i data-lucide="layers" class="w-5 h-5"></i>
+            </div>
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-lg text-white">Unlimited Apps</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-bold">$0 FREE</span>
+            </div>
+            <p class="text-xs text-zinc-400 mt-2">Build, test, and ship as many web applications, tools, and dashboards as you want.</p>
+            <div class="my-5 pt-3 border-t border-zinc-800/80">
+              <span class="text-3xl font-extrabold text-white">$0</span>
+              <span class="text-xs text-emerald-400 block mt-0.5">Free forever · No limits</span>
+            </div>
+            
+            <ul class="space-y-2 text-xs text-zinc-300">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Unlimited applications & sites</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Free worldwide CDN hosting</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Custom domain connection</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Automatic SSL certificates</li>
+            </ul>
+          </div>
+
+          <button onclick="document.getElementById('heroPromptInput').focus()" class="w-full mt-6 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white font-semibold text-xs transition-colors">
+            Start Building Free
+          </button>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="rounded-2xl bg-zinc-900 border-2 border-orange-500/80 p-6 flex flex-col justify-between relative glow-orange hover-card-lift">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-orange-600 text-white font-bold text-[10px] uppercase tracking-wider shadow-md">
+            Unlocked For All
+          </div>
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center mb-4">
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </div>
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-lg text-white">Top AI Models</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-bold">$0 FREE</span>
+            </div>
+            <p class="text-xs text-zinc-400 mt-2">Unlimited vibe coding prompts with cutting-edge frontier AI models.</p>
+            <div class="my-5 pt-3 border-t border-zinc-800/80">
+              <span class="text-3xl font-extrabold text-white">$0</span>
+              <span class="text-xs text-emerald-400 block mt-0.5">Unlimited generation</span>
+            </div>
+            
+            <ul class="space-y-2 text-xs text-zinc-300">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-400"></i> Claude 3.7 Sonnet & GPT-4o</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-400"></i> Uncapped message allowances</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-400"></i> High-speed priority synthesis</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-400"></i> In-app code editor with AI</li>
+            </ul>
+          </div>
+
+          <button onclick="document.getElementById('heroPromptInput').focus()" class="w-full mt-6 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-semibold text-xs transition-colors shadow-lg shadow-orange-600/30">
+            Build with Claude & GPT
+          </button>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="rounded-2xl bg-zinc-900/90 border border-zinc-800 p-6 flex flex-col justify-between hover-card-lift">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-4">
+              <i data-lucide="database" class="w-5 h-5"></i>
+            </div>
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-lg text-white">Full Backend & DB</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-bold">$0 FREE</span>
+            </div>
+            <p class="text-xs text-zinc-400 mt-2">Zero-config database, authentication, file storage, and serverless functions.</p>
+            <div class="my-5 pt-3 border-t border-zinc-800/80">
+              <span class="text-3xl font-extrabold text-white">$0</span>
+              <span class="text-xs text-emerald-400 block mt-0.5">Full stack included</span>
+            </div>
+            
+            <ul class="space-y-2 text-xs text-zinc-300">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400"></i> Managed PostgreSQL database</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400"></i> User authentication & sessions</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400"></i> Row-level security policies</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400"></i> Cloud file storage & CDN</li>
+            </ul>
+          </div>
+
+          <button onclick="document.getElementById('heroPromptInput').focus()" class="w-full mt-6 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white font-semibold text-xs transition-colors">
+            Deploy Full Stack Free
+          </button>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="rounded-2xl bg-zinc-900/90 border border-zinc-800 p-6 flex flex-col justify-between hover-card-lift">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-4">
+              <i data-lucide="bot" class="w-5 h-5"></i>
+            </div>
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-lg text-white">Superagents & Sync</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-bold">$0 FREE</span>
+            </div>
+            <p class="text-xs text-zinc-400 mt-2">24/7 background AI automations, 50+ integrations, and two-way GitHub sync.</p>
+            <div class="my-5 pt-3 border-t border-zinc-800/80">
+              <span class="text-3xl font-extrabold text-white">$0</span>
+              <span class="text-xs text-emerald-400 block mt-0.5">All features unlocked</span>
+            </div>
+            
+            <ul class="space-y-2 text-xs text-zinc-300">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> 24/7 Superagents & cron jobs</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> All 50+ 1-click connectors</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> 2-way GitHub code export</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> Stripe payments integration</li>
+            </ul>
+          </div>
+
+          <button onclick="document.getElementById('heroPromptInput').focus()" class="w-full mt-6 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white font-semibold text-xs transition-colors">
+            Get Started Free
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Free Resource & Scale Demonstrator -->
+      <div class="mt-12 p-6 rounded-2xl bg-zinc-950 border border-zinc-800 max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div class="flex-1">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-semibold text-zinc-300">Test Your Scale (Operations / Month)</span>
+            <span id="creditUsageDisplay" class="text-xs font-mono font-bold text-emerald-400">50,000 operations / mo</span>
+          </div>
+          <input id="creditUsageSlider" type="range" min="1000" max="100000" step="1000" value="50000" class="w-full accent-emerald-500 bg-zinc-800 h-2 rounded-lg cursor-pointer">
+          <div class="flex justify-between text-[10px] text-zinc-500 mt-1 font-mono">
+            <span>1,000 ops</span>
+            <span>50,000 ops</span>
+            <span>100,000+ ops</span>
+          </div>
+        </div>
+        <div class="sm:text-right shrink-0">
+          <span class="text-[10px] text-zinc-500 uppercase font-mono block">Your Cost</span>
+          <div id="freeCostDisplay" class="text-lg font-extrabold text-white mt-0.5">$0.00 (100% Free Forever)</div>
+          <div id="recommendedPlanBadge" class="text-[11px] font-bold text-emerald-400 mt-1">
+            Status: 100% Free & Unlimited
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- FREQUENTLY ASKED QUESTIONS (Accordion)                         -->
+  <!-- ============================================================== -->
+  <section id="faq" class="py-24 border-t border-white/5 bg-[#0d0d12] relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-orange-400 font-mono">Common Questions</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-3 tracking-tight">
+          Frequently asked questions
+        </h2>
+      </div>
+
+      <div class="space-y-3">
+
+        <!-- FAQ Item 0 (100% Free) -->
+        <div class="faq-item rounded-xl bg-zinc-900/60 border border-emerald-500/40 overflow-hidden transition-colors">
+          <button class="faq-trigger w-full px-6 py-4 text-left flex items-center justify-between text-sm sm:text-base font-semibold text-white focus:outline-none">
+            <span class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              Is Base44 completely free to use?
+            </span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-zinc-400 transition-transform"></i>
+          </button>
+          <div class="faq-answer px-6 pb-5 text-xs sm:text-sm text-zinc-300 leading-relaxed border-t border-zinc-800/60 pt-3">
+            Yes! Base44 is 100% free for everyone. There are no paid plans, no subscription charges, and no credit card required. You get unlimited applications, uncapped AI generation with Claude 3.7 Sonnet and GPT-4o, managed PostgreSQL databases, user authentication, 50+ one-click integrations, and global Edge CDN hosting at zero cost.
+          </div>
+        </div>
+
+        <!-- FAQ Item 1 -->
+        <div class="faq-item rounded-xl bg-zinc-900/60 border border-zinc-800 overflow-hidden transition-colors">
+          <button class="faq-trigger w-full px-6 py-4 text-left flex items-center justify-between text-sm sm:text-base font-semibold text-white focus:outline-none">
+            <span>What is Base44 and how does it work?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-zinc-400 transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden px-6 pb-5 text-xs sm:text-sm text-zinc-400 leading-relaxed border-t border-zinc-800/60 pt-3">
+            Base44 is a no-code AI development platform that turns your ideas into fully functional apps, websites, and AI agents. You describe what you need in plain English, and Base44 generates the complete solution: frontend, backend, PostgreSQL database, authentication, Stripe payments, and hosting. From there, you iterate by chatting with the AI until it works exactly the way you want.
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item rounded-xl bg-zinc-900/60 border border-zinc-800 overflow-hidden transition-colors">
+          <button class="faq-trigger w-full px-6 py-4 text-left flex items-center justify-between text-sm sm:text-base font-semibold text-white focus:outline-none">
+            <span>Do I own my app, and can I export the code?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-zinc-400 transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden px-6 pb-5 text-xs sm:text-sm text-zinc-400 leading-relaxed border-t border-zinc-800/60 pt-3">
+            Yes, 100%. You own everything you build on Base44: your code, your data, and your users. With two-way GitHub sync, you can export your application source code to your own private repository at any time. There is no vendor lock-in.
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item rounded-xl bg-zinc-900/60 border border-zinc-800 overflow-hidden transition-colors">
+          <button class="faq-trigger w-full px-6 py-4 text-left flex items-center justify-between text-sm sm:text-base font-semibold text-white focus:outline-none">
+            <span>Do I need coding experience to use Base44?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-zinc-400 transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden px-6 pb-5 text-xs sm:text-sm text-zinc-400 leading-relaxed border-t border-zinc-800/60 pt-3">
+            No. Base44 is designed to be accessible to anyone. Sales reps build custom pipeline tools, HR teams build onboarding portals, and founders launch entire SaaS platforms without writing code. If you do know code, in-app code editing and GitHub sync give you complete developer-grade control.
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item rounded-xl bg-zinc-900/60 border border-zinc-800 overflow-hidden transition-colors">
+          <button class="faq-trigger w-full px-6 py-4 text-left flex items-center justify-between text-sm sm:text-base font-semibold text-white focus:outline-none">
+            <span>What is a Superagent and how is it different from a chatbot?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-zinc-400 transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden px-6 pb-5 text-xs sm:text-sm text-zinc-400 leading-relaxed border-t border-zinc-800/60 pt-3">
+            A traditional chatbot waits for your prompt and returns text. A Superagent runs autonomously 24/7 on your behalf: scheduling recurring crons, executing webhooks, syncing emails, updating databases, and communicating via WhatsApp, Slack, or Telegram without you having to press a button.
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item rounded-xl bg-zinc-900/60 border border-zinc-800 overflow-hidden transition-colors">
+          <button class="faq-trigger w-full px-6 py-4 text-left flex items-center justify-between text-sm sm:text-base font-semibold text-white focus:outline-none">
+            <span>How does Base44 secure our application and data?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-zinc-400 transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden px-6 pb-5 text-xs sm:text-sm text-zinc-400 leading-relaxed border-t border-zinc-800/60 pt-3">
+            Base44 runs on Wix's battle-tested enterprise infrastructure. Every app includes built-in security scans (SAST/SCA), row-level database security, TLS 1.2+ transit encryption, AES-256 rest encryption, and KMS key management. Enterprise plans add SSO enforcement, IP allowlisting, and model training opt-outs.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- FINAL CTA SECTION                                              -->
+  <!-- ============================================================== -->
+  <section class="py-24 border-t border-white/5 bg-gradient-to-b from-[#0a0a0d] to-[#12121a] text-center relative overflow-hidden">
+    <div class="ambient-glow-1 bottom-[-200px] left-1/2 -translate-x-1/2"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <h2 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+        So, what are <br />
+        <span class="text-gradient-orange">we building?</span>
+      </h2>
+      <p class="text-zinc-400 mt-4 text-base sm:text-lg max-w-xl mx-auto">
+        Your next app, website, or 24/7 AI agent is only one prompt away.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button onclick="document.getElementById('heroPromptInput').focus()" class="px-8 py-4 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm tracking-wide shadow-xl shadow-orange-600/30 transition-all hover:scale-105 active:scale-95 flex items-center gap-2">
+          <span>Get Started Free</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+        <button class="open-enterprise-modal-btn px-8 py-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-semibold text-sm transition-all border border-zinc-700">
+          Free Enterprise Deployment
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- FOOTER                                                         -->
+  <!-- ============================================================== -->
+  <footer class="py-16 border-t border-zinc-800 bg-[#08080a] text-xs text-zinc-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+        
+        <!-- Brand Info -->
+        <div class="col-span-2">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-7 h-7 rounded-lg bg-orange-500 flex items-center justify-center font-mono font-bold text-white text-xs">
+              [44]
+            </div>
+            <span class="font-bold text-base text-white">Base44</span>
+          </div>
+          <p class="text-zinc-500 leading-relaxed max-w-sm mb-4">
+            Base44 is the AI-powered platform that lets users build fully functioning apps in minutes. Using nothing but natural language, turn your words into productivity apps, back-office tools, customer portals, or complete enterprise products.
+          </p>
+          <div class="flex items-center gap-2 text-zinc-500">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span>All systems operational</span>
+          </div>
+        </div>
+
+        <!-- Col 1: Product -->
+        <div>
+          <div class="font-bold text-white mb-3">Product</div>
+          <ul class="space-y-2">
+            <li><a href="#hero" class="hover:text-white transition-colors">AI App Builder</a></li>
+            <li><a href="#hero" class="hover:text-white transition-colors">AI Website Builder</a></li>
+            <li><a href="#superagents" class="hover:text-white transition-colors">Superagents</a></li>
+            <li><a href="#features" class="hover:text-white transition-colors">Backend for Devs</a></li>
+            <li><a href="#templates" class="hover:text-white transition-colors">Templates Marketplace</a></li>
+            <li><a href="#features" class="hover:text-white transition-colors">Integrations</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Resources -->
+        <div>
+          <div class="font-bold text-white mb-3">Resources</div>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Blog & Guides</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Community Discord</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Hire a Partner</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Higher Education</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Changelog</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Company & Legal -->
+        <div>
+          <div class="font-bold text-white mb-3">Company & Legal</div>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#enterprise" class="hover:text-white transition-colors">Enterprise</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Security Trust Center</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Responsible Use</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-500">
+        <div>
+          © 2026 Wix.com Ltd. All rights reserved.
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-zinc-300">Twitter (X)</a>
+          <a href="#" class="hover:text-zinc-300">GitHub</a>
+          <a href="#" class="hover:text-zinc-300">Discord</a>
+          <a href="#" class="hover:text-zinc-300">LinkedIn</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ============================================================== -->
+  <!-- MODAL 1: INTERACTIVE AI APP GENERATOR SIMULATOR                -->
+  <!-- ============================================================== -->
+  <div id="aiSimModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-zinc-900 border border-zinc-700 w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 bg-zinc-950 border-b border-zinc-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center text-white font-mono font-bold text-xs">
+            AI
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-white">Base44 Autonomous App Builder</h3>
+            <p id="simStepLabel" class="text-xs text-orange-400 font-mono">Initializing synthesis...</p>
+          </div>
+        </div>
+        <button id="closeSimModalBtn" class="p-2 text-zinc-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 overflow-y-auto flex-1 space-y-6">
+        
+        <!-- Prompt Box Banner -->
+        <div class="p-3.5 rounded-xl bg-black/60 border border-zinc-800 flex items-start gap-3">
+          <i data-lucide="terminal" class="w-4 h-4 text-orange-400 mt-0.5 shrink-0"></i>
+          <div>
+            <span class="text-[11px] font-mono text-zinc-500 uppercase">Input Prompt</span>
+            <p id="simPromptText" class="text-xs text-zinc-200 mt-0.5 font-medium italic"></p>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div>
+          <div class="w-full bg-zinc-800 h-2 rounded-full overflow-hidden">
+            <div id="simProgressBar" class="h-full bg-gradient-to-r from-orange-500 to-amber-400 transition-all duration-500" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Dual Column: Logs & Preview -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+          
+          <!-- Terminal Log Stream -->
+          <div class="md:col-span-5 bg-black/80 rounded-xl p-3 border border-zinc-800 flex flex-col h-72">
+            <div class="text-[10px] font-mono text-zinc-500 uppercase pb-2 border-b border-zinc-800 flex items-center justify-between">
+              <span>Agent Event Stream</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+            </div>
+            <div id="simLogStream" class="flex-1 overflow-y-auto pt-2 space-y-1">
+              <!-- Logs inserted dynamically -->
+            </div>
+          </div>
+
+          <!-- Live Rendered App Container -->
+          <div class="md:col-span-7 bg-zinc-950 rounded-xl border border-zinc-800 h-72 overflow-hidden" id="simPreviewContainer">
+            <!-- Dynamically populated when build completes -->
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL 2: TALK TO SALES & ENTERPRISE PILOT                      -->
+  <!-- ============================================================== -->
+  <div id="enterpriseModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-zinc-900 border border-zinc-700 w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl p-6 sm:p-8">
+      
+      <div class="flex items-center justify-between pb-4 border-b border-zinc-800 mb-6">
+        <div>
+          <h3 class="text-lg font-bold text-white">Free Enterprise Organization Setup</h3>
+          <p class="text-xs text-emerald-400 mt-0.5">100% Free · No license fees · Dedicated architecture guidance</p>
+        </div>
+        <button id="closeEnterpriseModalBtn" class="text-zinc-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="enterpriseLeadForm" class="space-y-4 text-xs">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-zinc-400 mb-1">First Name</label>
+            <input required type="text" class="w-full px-3 py-2 rounded-lg bg-zinc-950 border border-zinc-800 text-white focus:outline-none focus:border-orange-500" placeholder="Maor">
+          </div>
+          <div>
+            <label class="block text-zinc-400 mb-1">Last Name</label>
+            <input required type="text" class="w-full px-3 py-2 rounded-lg bg-zinc-950 border border-zinc-800 text-white focus:outline-none focus:border-orange-500" placeholder="Shlomo">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-zinc-400 mb-1">Work Email</label>
+          <input required type="email" class="w-full px-3 py-2 rounded-lg bg-zinc-950 border border-zinc-800 text-white focus:outline-none focus:border-orange-500" placeholder="you@company.com">
+        </div>
+
+        <div>
+          <label class="block text-zinc-400 mb-1">Company Website</label>
+          <input required type="text" class="w-full px-3 py-2 rounded-lg bg-zinc-950 border border-zinc-800 text-white focus:outline-none focus:border-orange-500" placeholder="https://company.com">
+        </div>
+
+        <div>
+          <label class="block text-zinc-400 mb-1">What would your team like to build?</label>
+          <textarea rows="3" class="w-full px-3 py-2 rounded-lg bg-zinc-950 border border-zinc-800 text-white focus:outline-none focus:border-orange-500 resize-none" placeholder="E.g., internal CRM, contract review workspace, multi-site dashboard..."></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition-colors shadow-lg shadow-orange-600/30">
+          Get Free Organization Setup
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="app.js"></script>
+</body>
+</html>
